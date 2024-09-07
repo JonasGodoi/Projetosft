@@ -1,0 +1,42 @@
+package com.example.gcvas.models;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Table(name = Beneficios.TABLE_NAME)
+@Data
+@Entity
+@AllArgsConstructor
+@NoArgsConstructor
+public class Beneficios {
+    
+     public static final String TABLE_NAME = "Benficios";
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CodB", nullable = false, unique = true, length = 11)
+    @Size(min = 11, max = 11)
+    @NotNull
+    private Integer id;
+
+    @Column(name = "Categoria", unique = true, nullable = false, insertable = true, updatable = false, length = 50 )
+    @Size(min = 4, max = 50)
+    @NotBlank
+    private String categoria;
+
+    @Column(name = "Descrição", unique = false, nullable = false, insertable = true, updatable = true, length = 50 )
+    @Size(min = 4, max = 50)
+    @NotBlank
+    private String desc_beneficio;
+
+}

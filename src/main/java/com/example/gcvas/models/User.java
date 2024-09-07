@@ -1,5 +1,6 @@
 package com.example.gcvas.models;
 
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -27,7 +28,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Long id;
+    protected Long id;
 
     @Column(name = "username", unique = true, nullable = false, insertable = true, updatable =false, length = 50 )
     @NotBlank
@@ -39,7 +40,4 @@ public class User {
     @Size(min = 2, max = 50)
     @JsonProperty(access = Access.WRITE_ONLY)
     private String password;
-
-    
-
 }

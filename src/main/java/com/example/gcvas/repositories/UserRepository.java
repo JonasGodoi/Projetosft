@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 import com.example.gcvas.models.User;
 
 
-
 @Repository
 
 public interface  UserRepository extends JpaRepository<User, Long> {
