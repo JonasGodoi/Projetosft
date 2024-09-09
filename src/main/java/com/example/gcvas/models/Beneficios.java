@@ -1,10 +1,13 @@
 package com.example.gcvas.models;
 
+import java.util.Set;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -27,7 +30,7 @@ public class Beneficios {
     @Column(name = "CodB", nullable = false, unique = true, length = 11)
     @Size(min = 11, max = 11)
     @NotNull
-    private Integer id;
+    private Long  id;
 
     @Column(name = "Categoria", unique = true, nullable = false, insertable = true, updatable = false, length = 50 )
     @Size(min = 4, max = 50)
@@ -38,5 +41,8 @@ public class Beneficios {
     @Size(min = 4, max = 50)
     @NotBlank
     private String desc_beneficio;
+
+    @ManyToMany(mappedBy="beneficiadoBeneficio")
+    Set<Beneficiario> beneficiado;
 
 }

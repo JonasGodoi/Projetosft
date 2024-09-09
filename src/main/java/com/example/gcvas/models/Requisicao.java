@@ -32,7 +32,7 @@ public class Requisicao {
     @Size(min = 10)
     private Long id;
 
-    @Column(name = "DataHora", unique = false, nullable = false, insertable = true, updatable =true, length = 50 )
+    @Column(name = "DataHora", unique = false, nullable = false, insertable = true, updatable =false, length = 50 )
     @NotNull
     @Size
     private Date data_hora;

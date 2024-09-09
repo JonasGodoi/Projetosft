@@ -1,10 +1,15 @@
 package com.example.gcvas.models;
 
+import java.util.Set;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -28,7 +33,7 @@ public class Beneficiario {
     @Column(name = "cod_nis", nullable = false, unique = true, length = 11)
     @Size(min = 11, max = 11)
     @NotNull(message = "O número de Nis é necessário")
-    private Integer id;
+    private Long id;
 
     @Column(name = "username", unique = true, nullable = false, insertable = true, updatable =false, length = 50 )
     @NotBlank
@@ -43,13 +48,18 @@ public class Beneficiario {
     @Column(name = "CPF", unique = true, nullable = false, insertable = true, updatable =false, length = 11 )
     @NotBlank
     @Size(min = 11, max =11)
-    private char cpf;
+    private String cpf;
 
     @Column(name = "Telefone", unique = true, nullable = false, insertable = true, updatable =true, length = 11 )
     @NotBlank
     @Size(min = 8, max = 11)
-    private char telefone;
+    private String telefone;
 
-    
+    @ManyToMany
+    @JoinTable(
+        name = "BeneficiadoBeneficio",
+        joinColumns = @JoinColumn(name = "cod_nis"),
+        inverseJoinColumns = @JoinColumn(name = "CodB"))
+    Set<Beneficios>   beneficiadoBeneficio; 
 
 }

@@ -15,6 +15,7 @@ public class UserService {
     @Autowired  
     UserRepository userRepository;  
 
+    
     public User findByid(Long id) {
 
        Optional<User> obj = this.userRepository.findById(id);
@@ -47,4 +48,7 @@ public class UserService {
         } catch (Exception e) {
         }
     }
+
+
+    
 }

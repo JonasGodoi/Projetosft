@@ -11,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,4 +41,15 @@ public class User {
     @Size(min = 2, max = 50)
     @JsonProperty(access = Access.WRITE_ONLY)
     private String password;
+
+    @Column(name = "requisições", unique = false, nullable = false, insertable = true, updatable =true, length = 50)
+    @NotBlank
+    @Size
+    private String requisicoes;
+
+    @Column(name = "tipo", unique = false, nullable = false, insertable = true, updatable = false)
+    @NotNull
+    @Size
+    private Integer tipo;
+
 }
