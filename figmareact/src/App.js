@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import AgendarConsulta from './components/Agendar/AgendarConsulta';
+import GerenciarBeneficiado from './components/Beneficiado/GerenciarBeneficiado';
 import EncaminharPessoa from './components/Encaminhar/EncaminharPessoa';
 import MenuHistorico from './components/Historico/MenuHistorico';
 import LoginPage from './components/Login/LoginPage';
@@ -60,6 +61,14 @@ function App() {
             element={
               <PrivateRoute>
                 <RelatorioAssistente />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/gerenciarbeneficiario"
+            element={
+              <PrivateRoute>
+                <GerenciarBeneficiado />
               </PrivateRoute>
             }
           />

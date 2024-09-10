@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./MenuHistorico.module.css";
+import styles from "./GerenciarBeneficiado.module.css";
 
 function HistoricoList() {
   const [searchTerm, setSearchTerm] = useState(""); // Estado para armazenar o termo de pesquisa

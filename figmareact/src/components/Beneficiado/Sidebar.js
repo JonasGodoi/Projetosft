@@ -1,6 +1,6 @@
 // Sidebar.js
 import React from "react";
-import styles from './MenuHistorico.module.css';
+import styles from './GerenciarBeneficiado.module.css';
 
 function Sidebar() {
   return (
@@ -15,7 +15,7 @@ function Sidebar() {
         Secretaria de Assistência Social
       </h1>
       <h2 className={styles.formTitle}>
-        Historico Geral
+        Gerenciar Beneficiario
       </h2>
       {/* Adicione o botão de logout */}
 

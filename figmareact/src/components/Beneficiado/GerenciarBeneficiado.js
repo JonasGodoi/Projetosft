@@ -1,9 +1,9 @@
 import React from "react";
+import styles from "./GerenciarBeneficiado.module.css";
 import Menu from "./Menu";
-import styles from "./MenuHistorico.module.css";
 import Sidebar from "./Sidebar";
 
-function MenuHistorico() {
+function GerenciarBeneficiado() {
   return (
     <main className={styles.container}>
       <section className={styles.card}>
@@ -20,4 +20,4 @@ function MenuHistorico() {
   );
 }
 
-export default MenuHistorico;
+export default GerenciarBeneficiado;
