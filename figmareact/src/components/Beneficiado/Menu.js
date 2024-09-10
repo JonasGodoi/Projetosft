@@ -1,67 +1,48 @@
 import React, { useState } from "react";
+import { Button, Form, Modal } from "react-bootstrap";
 import styles from "./GerenciarBeneficiado.module.css";
 
 function HistoricoList() {
-  const [searchTerm, setSearchTerm] = useState(""); // Estado para armazenar o termo de pesquisa
+  const [searchTerm, setSearchTerm] = useState("");
+  const [showAddModal, setShowAddModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [selectedItem, setSelectedItem] = useState(null);
+  const [newItem, setNewItem] = useState({ nome: "", codnis: "", endereco: "", cpf: "", telefone: "", date: "" });
 
   const historicoData = [
-{
-  nome: "dianabol",
-  codnis: "025001",
-  endereco: "rua hipertrofia, 25",
-  cpf: "025.025.025-25",
-  telefone: "(11) 40025-0000",
-  date: "27/02/1996"
-},
-{
-  nome: "stanozolol",
-  codnis: "004002",
-  endereco: "beco do pump, 404",
-  cpf: "004.004.004-04",
-  telefone: "(21) 12345-0044",
-  date: "01/03/1997"
-},
-{
-  nome: "oxandrolona",
-  codnis: "001003",
-  endereco: "avenida anabol, 101",
-  cpf: "001.001.001-01",
-  telefone: "(31) 65432-0010",
-  date: "01/06/1997"
-},
-{
-  nome: "enantato",
-  codnis: "007004",
-  endereco: "travessa venosa, 707",
-  cpf: "007.007.007-07",
-  telefone: "(41) 88888-0077",
-  date: "01/09/1996"
-},
-{
-  nome: "boldenona",
-  codnis: "039005",
-  endereco: "rua cavalo bravo, 393",
-  cpf: "039.039.039-39",
-  telefone: "(51) 99999-3939",
-  date: "14/10/1996"
-},
-{
-  nome: "trembolona",
-  codnis: "052006",
-  endereco: "ladeira braba, 520",
-  cpf: "052.052.052-52",
-  telefone: "(61) 55555-5200",
-  date: "08/12/1996"
-}
+    {
+      nome: "dianabol",
+      codnis: "025001",
+      endereco: "rua hipertrofia, 25",
+      cpf: "025.025.025-25",
+      telefone: "(11) 40025-0000",
+      date: "27/02/1996",
+    },
+    {
+      nome: "dianabol",
+      codnis: "025001",
+      endereco: "rua hipertrofia, 25",
+      cpf: "111111",
+      telefone: "(11) 40025-0000",
+      date: "27/02/1996",
+    }
     // Adicione mais itens conforme necessário
   ];
 
-  // Função para atualizar o valor de busca
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  // Filtrar a lista com base no termo de pesquisa
+  const handleShowAddModal = () => setShowAddModal(true);
+  const handleCloseAddModal = () => setShowAddModal(false);
+
+  const handleShowEditModal = () => setShowEditModal(true);
+  const handleCloseEditModal = () => setShowEditModal(false);
+
+  const handleShowDeleteModal = () => setShowDeleteModal(true);
+  const handleCloseDeleteModal = () => setShowDeleteModal(false);
+
   const filteredData = historicoData.filter((item) => {
     const searchValue = searchTerm.toLowerCase();
     return (
@@ -76,14 +57,19 @@ function HistoricoList() {
 
   return (
     <div className={styles.historicoContainer}>
-      <input
-        type="text"
-        placeholder="Pesquisar..."
-        value={searchTerm}
-        onChange={handleSearch}
-        className={styles.searchInput}
-      />
-  
+      <div className={styles.searchContainer}>
+        <input
+          type="text"
+          placeholder="Pesquisar..."
+          value={searchTerm}
+          onChange={handleSearch}
+          className={styles.searchInput}
+        />
+        <Button onClick={handleShowAddModal} className={styles.createButton}>
+          Criar
+        </Button>
+      </div>
+
       <div className={styles.historicoTableContainer}>
         <table className={styles.historicoTable}>
           <thead>
@@ -94,6 +80,7 @@ function HistoricoList() {
               <th>CPF</th>
               <th>Telefone</th>
               <th>Date</th>
+              <th>Ações</th>
             </tr>
           </thead>
           <tbody>
@@ -105,11 +92,173 @@ function HistoricoList() {
                 <td>{item.cpf}</td>
                 <td>{item.telefone}</td>
                 <td>{item.date}</td>
+                <td>
+                  <Button variant="primary" onClick={() => { setSelectedItem(item); handleShowEditModal(); }}>Editar</Button>
+                  <Button variant="danger" onClick={() => { setSelectedItem(item); handleShowDeleteModal(); }}>Excluir</Button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+
+      {/* Modal para adicionar um novo usuário */}
+      <Modal show={showAddModal} onHide={handleCloseAddModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Adicionar Usuário</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formName">
+              <Form.Label>Nome</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Digite o nome"
+                value={newItem.nome}
+                onChange={(e) => setNewItem({ ...newItem, nome: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group controlId="formCodnis">
+              <Form.Label>Codnis</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Digite o codnis"
+                value={newItem.codnis}
+                onChange={(e) => setNewItem({ ...newItem, codnis: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group controlId="formEndereco">
+              <Form.Label>Endereço</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Digite o endereço"
+                value={newItem.endereco}
+                onChange={(e) => setNewItem({ ...newItem, endereco: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group controlId="formCpf">
+              <Form.Label>CPF</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Digite o CPF"
+                value={newItem.cpf}
+                onChange={(e) => setNewItem({ ...newItem, cpf: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group controlId="formTelefone">
+              <Form.Label>Telefone</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Digite o telefone"
+                value={newItem.telefone}
+                onChange={(e) => setNewItem({ ...newItem, telefone: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group controlId="formDate">
+              <Form.Label>Data</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="Digite a data"
+                value={newItem.date}
+                onChange={(e) => setNewItem({ ...newItem, date: e.target.value })}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseAddModal}>
+            Cancelar
+          </Button>
+          <Button variant="primary" onClick={() => { console.log("Criar item:", newItem); handleCloseAddModal(); }}>
+            Salvar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal para editar um usuário */}
+      <Modal show={showEditModal} onHide={handleCloseEditModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Editar Usuário</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formName">
+              <Form.Label>Nome</Form.Label>
+              <Form.Control
+                type="text"
+                value={selectedItem?.nome || ""}
+                onChange={(e) => setSelectedItem({ ...selectedItem, nome: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group controlId="formCodnis">
+              <Form.Label>Codnis</Form.Label>
+              <Form.Control
+                type="text"
+                value={selectedItem?.codnis || ""}
+                onChange={(e) => setSelectedItem({ ...selectedItem, codnis: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group controlId="formEndereco">
+              <Form.Label>Endereço</Form.Label>
+              <Form.Control
+                type="text"
+                value={selectedItem?.endereco || ""}
+                onChange={(e) => setSelectedItem({ ...selectedItem, endereco: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group controlId="formCpf">
+              <Form.Label>CPF</Form.Label>
+              <Form.Control
+                type="text"
+                value={selectedItem?.cpf || ""}
+                onChange={(e) => setSelectedItem({ ...selectedItem, cpf: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group controlId="formTelefone">
+              <Form.Label>Telefone</Form.Label>
+              <Form.Control
+                type="text"
+                value={selectedItem?.telefone || ""}
+                onChange={(e) => setSelectedItem({ ...selectedItem, telefone: e.target.value })}
+              />
+            </Form.Group>
+            <Form.Group controlId="formDate">
+              <Form.Label>Data</Form.Label>
+              <Form.Control
+                type="text"
+                value={selectedItem?.date || ""}
+                onChange={(e) => setSelectedItem({ ...selectedItem, date: e.target.value })}
+              />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseEditModal}>
+            Cancelar
+          </Button>
+          <Button variant="primary" onClick={() => { console.log("Atualizar item:", selectedItem); handleCloseEditModal(); }}>
+            Salvar
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal para confirmar a exclusão de um usuário */}
+      <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Excluir Usuário</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Tem certeza de que deseja excluir o usuário {selectedItem?.nome}?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseDeleteModal}>
+            Cancelar
+          </Button>
+          <Button variant="danger" onClick={() => { console.log("Excluir item:", selectedItem); handleCloseDeleteModal(); }}>
+            Excluir
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 }

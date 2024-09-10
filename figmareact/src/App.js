@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import AgendarConsulta from './components/Agendar/AgendarConsulta';
@@ -9,6 +10,7 @@ import MenuAssistente from './components/MenuAssistente/MenuAssistente';
 import MenuSecretaria from './components/MenuSecretaria/MenuSecretaria';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import RelatorioAssistente from './components/RelatorioAssistente/RelatorioAssistente';
+
 
 
 function App() {

@@ -8,6 +8,12 @@
     margin: 0 auto; /* Opcional: centraliza o container horizontalmente se ele tiver uma largura fixa */
 }
 
+/* Seu CSS */
+.my-custom-class {
+  color: #ff0000 !important; /* Garantir que seu estilo seja aplicado */
+}
+
+
   
   .card {
     border-radius: 16px;

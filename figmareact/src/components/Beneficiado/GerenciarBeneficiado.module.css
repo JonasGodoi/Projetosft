@@ -61,7 +61,7 @@
     flex-direction: column;
     color: #fff;
     text-align: center;
-    width: 65%;
+    width: 90%;
     font: 800 20px Inter, sans-serif;
   }
   
@@ -101,7 +101,7 @@
     position: relative;
     left: 200%;
     bottom: 60%;
-    margin-left: 10px;
+    margin-left: -200px;
     color:#4f9122;
     text-align: center;
     padding: 0;
@@ -167,8 +167,8 @@
     align-items: center; /* Centraliza horizontalmente */
     justify-content: flex-start; /* Para evitar deslocamento para baixo */
     padding: 50px;
-    margin-top: 80px; /* Ajusta a margem superior */
-    width: 100%; /* Isso faz com que ocupe 80% da tela, mas não 100% */
+    margin-top: 50px; /* Ajusta a margem superior */
+    width: 135%; /* Isso faz com que ocupe 80% da tela, mas não 100% */
     max-width: 1200px; /* Define um valor máximo para a largura */
     margin-left: auto; /* Centraliza o conteúdo horizontalmente */
     margin-right: auto; /* Centraliza o conteúdo horizontalmente */

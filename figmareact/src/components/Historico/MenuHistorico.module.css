@@ -61,7 +61,7 @@
     flex-direction: column;
     color: #fff;
     text-align: center;
-    width: 65%;
+    width: 88%;
     font: 800 20px Inter, sans-serif;
   }
   
@@ -168,7 +168,7 @@
     justify-content: flex-start; /* Para evitar deslocamento para baixo */
     padding: 50px;
     margin-top: 80px; /* Ajusta a margem superior */
-    width: 100%; /* Isso faz com que ocupe 80% da tela, mas não 100% */
+    width: 130%; /* Isso faz com que ocupe 80% da tela, mas não 100% */
     max-width: 1200px; /* Define um valor máximo para a largura */
     margin-left: auto; /* Centraliza o conteúdo horizontalmente */
     margin-right: auto; /* Centraliza o conteúdo horizontalmente */
