@@ -15,48 +15,47 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.gcvas.models.User;
-import com.example.gcvas.service.UserService;
+import com.example.gcvas.models.Acao;
+import com.example.gcvas.service.AcaoService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/Acao")
 @Validated
-public class UserController {
-
+public class AcaoController {
+    
     @Autowired
-    UserService userService;
-
+    AcaoService acaoService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable("id") Long id) {
-        User obj = this.userService.findByid(id);
+    public ResponseEntity<Acao> getAcao(@PathVariable("id") Long id) {
+        Acao obj = this.acaoService.findById(id);
 
         return ResponseEntity.ok().body(obj);
     }
-    
+
     @PostMapping("path")
-    public ResponseEntity<Void> postUser(@RequestBody @Valid User obj) {
-        this.userService.create(obj);
+    public ResponseEntity<Void> postAcao(@RequestBody @Valid Acao obj) {
+        this.acaoService.create(obj);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 
         return ResponseEntity.created(uri).build();
     }
-    
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> putUser(@PathVariable("id") Long id, @RequestBody User newObj) {
+
+     @PutMapping("/{id}")
+    public ResponseEntity<Void> putAcao(@PathVariable("id") Long id, @RequestBody Acao newObj) {
         newObj.setId(id);
 
-        this.userService.update(newObj);
+        this.acaoService.update(newObj);
         
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUserById(@PathVariable("id")Long id){
-        this.userService.deleteByid(id);
+    public ResponseEntity<Void> deleteBeneficiarioById(@PathVariable("id")Long id){
+        this.acaoService.deleteByid(id);
 
         return ResponseEntity.noContent().build();
     }

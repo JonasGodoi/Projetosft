@@ -15,51 +15,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.gcvas.models.User;
-import com.example.gcvas.service.UserService;
+import com.example.gcvas.models.Requisicao;
+import com.example.gcvas.service.RequisicaoService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/requisição")
 @Validated
-public class UserController {
+public class RequisicaoController {
 
     @Autowired
-    UserService userService;
-
+    RequisicaoService requisicaoService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable("id") Long id) {
-        User obj = this.userService.findByid(id);
+    public ResponseEntity<Requisicao> getRequisicao(@PathVariable("id") Long id) {
+        Requisicao obj = this.requisicaoService.findByid(id);
 
         return ResponseEntity.ok().body(obj);
     }
     
     @PostMapping("path")
-    public ResponseEntity<Void> postUser(@RequestBody @Valid User obj) {
-        this.userService.create(obj);
+    public ResponseEntity<Void> postRequisicao(@RequestBody @Valid Requisicao obj) {
+        this.requisicaoService.create(obj);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 
         return ResponseEntity.created(uri).build();
     }
-    
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> putUser(@PathVariable("id") Long id, @RequestBody User newObj) {
+
+     @PutMapping("/{id}")
+    public ResponseEntity<Void> putRequisicao(@PathVariable("id") Long id, @RequestBody Requisicao newObj) {
         newObj.setId(id);
 
-        this.userService.update(newObj);
+        this.requisicaoService.update(newObj);
         
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUserById(@PathVariable("id")Long id){
-        this.userService.deleteByid(id);
+    public ResponseEntity<Void> deleteRequisicaoById(@PathVariable("id")Long id){
+        this.requisicaoService.deleteByid(id);
 
         return ResponseEntity.noContent().build();
     }
-
 
 }

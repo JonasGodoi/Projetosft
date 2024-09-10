@@ -15,51 +15,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.gcvas.models.User;
-import com.example.gcvas.service.UserService;
+import com.example.gcvas.models.Filiado;
+import com.example.gcvas.service.FiliadoService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/filiado")
 @Validated
-public class UserController {
-
+public class FiliadoController {
+    
     @Autowired
-    UserService userService;
-
+    FiliadoService filiadoService;
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable("id") Long id) {
-        User obj = this.userService.findByid(id);
+    public ResponseEntity<Filiado> getFiliado(@PathVariable("id") Long id) {
+        Filiado obj = this.filiadoService.findByid(id);
 
         return ResponseEntity.ok().body(obj);
     }
-    
+
     @PostMapping("path")
-    public ResponseEntity<Void> postUser(@RequestBody @Valid User obj) {
-        this.userService.create(obj);
+    public ResponseEntity<Void> postFiliado(@RequestBody @Valid Filiado obj) {
+        this.filiadoService.create(obj);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 
         return ResponseEntity.created(uri).build();
     }
-    
-    @PutMapping("/{id}")
-    public ResponseEntity<Void> putUser(@PathVariable("id") Long id, @RequestBody User newObj) {
+
+     @PutMapping("/{id}")
+    public ResponseEntity<Void> putFiliado(@PathVariable("id") Long id, @RequestBody Filiado newObj) {
         newObj.setId(id);
 
-        this.userService.update(newObj);
+        this.filiadoService.update(newObj);
         
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUserById(@PathVariable("id")Long id){
-        this.userService.deleteByid(id);
+    public ResponseEntity<Void> deleteFiliadoById(@PathVariable("id")Long id){
+        this.filiadoService.deleteByid(id);
 
         return ResponseEntity.noContent().build();
     }
-
 
 }

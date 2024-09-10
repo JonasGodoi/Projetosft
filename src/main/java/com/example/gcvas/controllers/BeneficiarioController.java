@@ -15,51 +15,49 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import com.example.gcvas.models.User;
-import com.example.gcvas.service.UserService;
+import com.example.gcvas.models.Beneficiario;
+import com.example.gcvas.service.BeneficiarioService;
 
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/Beneficiario")
 @Validated
-public class UserController {
+public class BeneficiarioController {
 
     @Autowired
-    UserService userService;
+    BeneficiarioService beneficiarioService;
 
-
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable("id") Long id) {
-        User obj = this.userService.findByid(id);
+     @GetMapping("/{id}")
+    public ResponseEntity<Beneficiario> getBeneficiario(@PathVariable("id") Long id) {
+        Beneficiario obj = this.beneficiarioService.findById(id);
 
         return ResponseEntity.ok().body(obj);
     }
-    
+
     @PostMapping("path")
-    public ResponseEntity<Void> postUser(@RequestBody @Valid User obj) {
-        this.userService.create(obj);
+    public ResponseEntity<Void> postBeneficiario(@RequestBody @Valid Beneficiario obj) {
+        this.beneficiarioService.create(obj);
 
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 
         return ResponseEntity.created(uri).build();
     }
-    
+
     @PutMapping("/{id}")
-    public ResponseEntity<Void> putUser(@PathVariable("id") Long id, @RequestBody User newObj) {
+    public ResponseEntity<Void> putBeneficiario(@PathVariable("id") Long id, @RequestBody Beneficiario newObj) {
         newObj.setId(id);
 
-        this.userService.update(newObj);
+        this.beneficiarioService.update(newObj);
         
         return ResponseEntity.noContent().build();
     }
-
+    
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteUserById(@PathVariable("id")Long id){
-        this.userService.deleteByid(id);
+    public ResponseEntity<Void> deleteBeneficiarioById(@PathVariable("id")Long id){
+        this.beneficiarioService.deleteByid(id);
 
         return ResponseEntity.noContent().build();
     }
-
 
 }
