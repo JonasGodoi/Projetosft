@@ -6,7 +6,7 @@ function Menu() {
   const menuItems = [
     { text: "Agendar Consulta", path: "/agendar" },
     { text: "Encaminhar Usuário", path: "/encaminhar" }, // Ajuste o caminho conforme necessário
-    { text: "Gerar Relatórios", path: "/relatorios" }, // Ajuste o caminho conforme necessário
+    { text: "Gerar Relatórios", path: "/relatoriosecretaria" }, // Ajuste o caminho conforme necessário
     { text: "Consultar Histórico", path: "/historico" } // Ajuste o caminho conforme necessário
   ];
 

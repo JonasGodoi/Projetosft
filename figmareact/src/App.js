@@ -7,6 +7,7 @@ import LoginPage from './components/Login/LoginPage';
 import MenuAssistente from './components/MenuAssistente/MenuAssistente';
 import MenuSecretaria from './components/MenuSecretaria/MenuSecretaria';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
+import RelatorioAssistente from './components/RelatorioAssistente/RelatorioAssistente';
 
 
 function App() {
@@ -53,6 +54,14 @@ function App() {
               <MenuHistorico />
             </PrivateRoute>
           }
+          />
+          <Route
+            path="/relatoriosecretaria"
+            element={
+              <PrivateRoute>
+                <RelatorioAssistente />
+              </PrivateRoute>
+            }
           />
       </Routes>
     </Router>
