@@ -6,7 +6,7 @@ function Menu() {
   const menuItems = [
     { text: "Gerenciar Usuario", path: "/ausuario" },
     { text: "Gerenciar Beneficiário", path: "/gerenciarbeneficiario" }, 
-    { text: "Gerenciar Benefícios", path: "/abeneficio" }, 
+    /*{ text: "Gerenciar Benefícios", path: "/abeneficio" },*/ 
     { text: "Gerar Relatórios", path: "/relatoriosecretaria" }, 
     { text: "Consultar Histórico", path: "/historico" }, 
   ];
