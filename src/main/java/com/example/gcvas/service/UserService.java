@@ -7,7 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.example.gcvas.models.User;
 import com.example.gcvas.repositories.UserRepository;
-
+import com.example.gcvas.service.exceptions.DataBindingViolationException;
+import com.example.gcvas.service.exceptions.ObjectNotFoundException;
 
 @Service
 public class UserService {
@@ -23,7 +24,7 @@ public class UserService {
         if(obj.isPresent()){
             return obj.get();
         }
-        throw new RuntimeException("Usuário não encontrado {id:"+id+"} ");
+        throw new ObjectNotFoundException("Usuário não encontrado {id:"+id+"} ");
     }
 
     public User create(User obj){
@@ -46,6 +47,8 @@ public class UserService {
         try {
             this.userRepository.deleteById(id);
         } catch (Exception e) {
+            throw new DataBindingViolationException(
+                    "Não é possível excluir o usuário {id:" + id + "} pois possui entidades relacionadas");
         }
     }
 

@@ -62,4 +62,7 @@ public class Beneficiario {
         inverseJoinColumns = @JoinColumn(name = "CodB"))
     Set<Beneficios>   beneficiadoBeneficio; 
 
+    
+
+
 }

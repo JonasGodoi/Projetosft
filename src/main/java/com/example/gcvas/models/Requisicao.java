@@ -7,8 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -47,16 +47,12 @@ public class Requisicao {
     @Size(min = 4, max = 50)
     private char status;
 
-    @Column(name = "Beneficiario", unique = false, nullable = false, insertable = true, updatable =false, length = 50 )
-    @NotNull
-    @Size
-    @ManyToOne
-    private Beneficiario beneficiario;
+   @ManyToOne
+    @JoinColumn(name = "cod_nis", unique = false, nullable = false, insertable = true, updatable =false)
+   private Beneficiario beneficiario;
 
-    @Column(name = "Beneficios", unique = false, nullable = false, insertable = true, updatable =false, length = 50 )
-    @NotNull
-    @Size
-    @OneToMany
+   @ManyToOne
+    @JoinColumn(name = "CodB", unique = false, nullable = false, insertable = true, updatable =false)
     private Beneficios beneficios;
 
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
@@ -43,10 +44,8 @@ public class Filiado {
     @NotNull
     @Size(min = 8, max = 8)
     private Integer data;
-    
-    @Column(name = "Beneficiario", unique = false, nullable = false, insertable = true, updatable =false, length = 50 )
-    @NotNull
-    @Size
-    @ManyToOne
+
+   @ManyToOne
+   @JoinColumn(name = "cod_nis", unique = false, nullable = false, insertable = true, updatable =false)
     private Beneficiario beneficiario;
 }

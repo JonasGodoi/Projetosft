@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Beneficios {
     
-     public static final String TABLE_NAME = "Benficios";
+     public static final String TABLE_NAME = "Beneficios";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -44,5 +44,6 @@ public class Beneficios {
 
     @ManyToMany(mappedBy="beneficiadoBeneficio")
     Set<Beneficiario> beneficiado;
+
 
 }
