@@ -4,7 +4,7 @@ import styles from "./MenuAssistente.module.css";
 
 function Menu() {
   const menuItems = [
-    { text: "Gerenciar Usuario", path: "/ausuario" },
+    { text: "Gerenciar Usuario", path: "/gerenciarusuario" },
     { text: "Gerenciar Beneficiário", path: "/gerenciarbeneficiario" }, 
     /*{ text: "Gerenciar Benefícios", path: "/abeneficio" },*/ 
     { text: "Gerar Relatórios", path: "/relatoriosecretaria" }, 

@@ -6,12 +6,13 @@ const FormInput = ({ label, icon, type = 'text', id, value, onChange }) => {
     <>
       <label htmlFor={id} className={styles.inputLabel}>{label}</label>
       <div className={styles.inputWrapper}>
-        <img loading="lazy" src={icon} alt="" className={styles.inputIcon} />
-          <input
-            type={type}
-            id={id}
-            value={value}
-            onChange={onChange}
+        {icon && <span className={styles.inputIcon}>{icon}</span>} {/* Renderize o ícone diretamente */}
+        <input
+          type={type}
+          id={id}
+          value={value}
+          onChange={onChange}
+          className={styles.inputField}
         />
       </div>
     </>

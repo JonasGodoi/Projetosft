@@ -5,7 +5,7 @@
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  transform: scale(0.8);
+  transform: scale(0.9);
   
 }
 
@@ -73,6 +73,7 @@
   width: 304px;
   border-radius: 16px 0 0 0;
   z-index: 10;
+  background-color: #fff;
 }
 
 .sidebarTitle {
@@ -95,7 +96,7 @@
   flex-direction: column;
   padding: 1px 0; /* Substitui a margem por padding */
   margin: 0px auto; /* Remove o espaçamento superior extra */
-  margin-top: -25px;
+
   margin-left: 23%;
 }
 
@@ -110,7 +111,8 @@
   color: #4f9122;
   text-align: center;
   align-self: center;
-  margin-bottom: 70px;
+  margin-bottom: 20px;
+  
   margin-left: 40%;
   font: 800 40px Inter, sans-serif;
 }
@@ -205,6 +207,31 @@ input, textarea, select {
   border: none; /* Remove a borda padrão do input */
   outline: none; /* Remove o contorno padrão ao focar */
   width: 100%; /* Garante que o input ocupe o espaço disponível */
-  padding: 10px; /* Ajuste o padding conforme necessário */
+  padding: 4px; /* Ajuste o padding conforme necessário */
   box-shadow: none; /* Remove qualquer sombra */
+}
+
+.inputGroup {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+
+.input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.label {
+  font-size: 14px;
+  margin-bottom: 4px;
+  display: block;
 }

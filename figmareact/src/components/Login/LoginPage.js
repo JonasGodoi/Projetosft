@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { MdOutlinePassword, MdPerson } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import logoImage from "../images/logo (1).png"; // Ajuste o caminho conforme sua estrutura
 import styles from "./LoginPage.module.css";
@@ -20,16 +21,14 @@ const LoginPage = () => {
 
     if (username === defaultUsername && password === defaultPassword) {
       localStorage.setItem("isAuthenticated", "true");
-      navigate("/menusecretaria", {replace: true});
-    } else if (username === outroUsername && password === outroPassword){
+      navigate("/menusecretaria", { replace: true });
+    } else if (username === outroUsername && password === outroPassword) {
       localStorage.setItem("isAuthenticated", "true");
-      navigate("/menuassistente", {replace: true});
-    }else{
+      navigate("/menuassistente", { replace: true });
+    } else {
       setErrorMessage("Usuário ou senha inválidos");
     }
   };
-
-
 
   return (
     <main className={styles.loginPage}>
@@ -44,11 +43,7 @@ const LoginPage = () => {
           <h1 className={styles.formTitle}>Insira seus dados</h1>
           <form onSubmit={handleLogin}>
             <div className={styles.inputGroup}>
-              <img
-                src="https://cdn.builder.io/api/v1/image/assets/TEMP/998e016ae516bd6ce7c5749007f265e65f59f81cc880487f5ad3f272f28446c1?placeholderIfAbsent=true&apiKey=03461e8016f04c50a309e203e5ed2c0b"
-                alt="Ícone de usuário"
-                className={styles.inputIcon}
-              />
+              <MdPerson className={styles.inputIcon} />
               <label htmlFor="login" className={styles.visuallyHidden}></label>
               <input
                 id="login"
@@ -60,15 +55,8 @@ const LoginPage = () => {
               />
             </div>
             <div className={styles.inputGroup}>
-              <img
-                src={logoImage}
-                alt="Ícone de senha"
-                className={styles.inputIcon}
-              />
-              <label
-                htmlFor="password"
-                className={styles.visuallyHidden}
-              ></label>
+              <MdOutlinePassword className={styles.inputIcon} />
+              <label htmlFor="password" className={styles.visuallyHidden}></label>
               <input
                 id="password"
                 type="password"
@@ -80,8 +68,7 @@ const LoginPage = () => {
             </div>
             {errorMessage && (
               <p className={styles.errorMessage}>{errorMessage}</p>
-            )}{" "}
-            {/* Mensagem de erro */}
+            )}
             <button type="submit" className={styles.submitButton}>
               ENTRAR
             </button>

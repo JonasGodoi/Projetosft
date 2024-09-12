@@ -10,6 +10,7 @@ import MenuAssistente from './components/MenuAssistente/MenuAssistente';
 import MenuSecretaria from './components/MenuSecretaria/MenuSecretaria';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import RelatorioAssistente from './components/RelatorioAssistente/RelatorioAssistente';
+import GerenciarUsuario from './components/Usuario/GerenciarBeneficiado';
 
 
 
@@ -71,6 +72,14 @@ function App() {
             element={
               <PrivateRoute>
                 <GerenciarBeneficiado />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/gerenciarusuario"
+            element={
+              <PrivateRoute>
+                <GerenciarUsuario />
               </PrivateRoute>
             }
           />

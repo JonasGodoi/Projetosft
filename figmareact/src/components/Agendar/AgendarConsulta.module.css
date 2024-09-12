@@ -5,7 +5,7 @@
   min-height: 100vh;
   align-items: center;
   justify-content: center;
-  transform: scale(0.8);
+  transform: scale(0.9);
   
 }
 
@@ -73,6 +73,7 @@
   width: 304px;
   border-radius: 16px 0 0 0;
   z-index: 10;
+  background-color: #fff;
 }
 
 .sidebarTitle {
@@ -95,7 +96,7 @@
   flex-direction: column;
   padding: 1px 0; /* Substitui a margem por padding */
   margin: 0px auto; /* Remove o espaçamento superior extra */
-  margin-top: -25px;
+
   margin-left: 23%;
 }
 
@@ -110,7 +111,7 @@
   color: #4f9122;
   text-align: center;
   align-self: center;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   margin-left: 40%;
   font: 800 40px Inter, sans-serif;
 }
@@ -119,7 +120,7 @@
   color: #67a140;
   text-align: center;
   align-self: start;
-  margin-top: 8%;
+  margin-top: 5%;
   font: 700 25px Inter, sans-serif;
 }
 
@@ -204,6 +205,6 @@ input, textarea, select {
   border: none; /* Remove a borda padrão do input */
   outline: none; /* Remove o contorno padrão ao focar */
   width: 100%; /* Garante que o input ocupe o espaço disponível */
-  padding: 10px; /* Ajuste o padding conforme necessário */
+  padding: 4px; /* Ajuste o padding conforme necessário */
   box-shadow: none; /* Remove qualquer sombra */
 }

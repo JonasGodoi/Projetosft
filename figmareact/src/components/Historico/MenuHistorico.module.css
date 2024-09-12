@@ -6,6 +6,7 @@
     max-width: 958px; /* Define a largura máxima do container */
     padding: 1px 0; /* Adiciona um padding opcional */
     margin: 0 auto; /* Opcional: centraliza o container horizontalmente se ele tiver uma largura fixa */
+    transform: scale(1.1)
 }
 
   
@@ -79,6 +80,7 @@
     width: 304px;
     border-radius: 16px 0 0 0;
     z-index: 10;
+    background-color: #fff;
   }
   
   .sidebarTitle {

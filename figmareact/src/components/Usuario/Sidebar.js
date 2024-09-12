@@ -1,7 +1,7 @@
 // Sidebar.js
 import React from "react";
 import logoImage from "../images/logo (1).png"; // Ajuste o caminho conforme sua estrutura
-import styles from './GerenciarBeneficiado.module.css';
+import styles from './GerenciarUsuario.module.css';
 
 
 function Sidebar() {
@@ -17,7 +17,7 @@ function Sidebar() {
         Secretaria de Assistência Social
       </h1>
       <h2 className={styles.formTitle}>
-        Gerenciar Beneficiario
+        Gerenciar Usuario 
       </h2>
       {/* Adicione o botão de logout */}
 

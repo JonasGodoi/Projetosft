@@ -1,5 +1,6 @@
+import jsPDF from "jspdf"; // Importe o jsPDF
 import React, { useState } from "react";
-import { Button, Form, Modal } from "react-bootstrap";
+import { Button, Dropdown, DropdownButton, Form, Modal } from "react-bootstrap";
 import styles from "./GerenciarBeneficiado.module.css";
 
 function HistoricoList() {
@@ -10,10 +11,8 @@ function HistoricoList() {
   const [selectedItem, setSelectedItem] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5; // Número de itens por página
-  const maxPageButtons = 5; // Número máximo de botões de página a serem exibidos
 
   const historicoData = [
-    // Exemplo de dados
     {
       nome: "Luna Starling",
       codnis: "A1B2C3",
@@ -270,8 +269,6 @@ function HistoricoList() {
     telefone: "(71) 43210-9876",
     date: "08/04/1992",
   },
-
-    // Adicione mais dados conforme necessário
   ];
 
   const handleSearch = (event) => setSearchTerm(event.target.value);
@@ -309,31 +306,28 @@ function HistoricoList() {
 
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
 
-  const handlePageChange = (pageNumber) => {
+  const handlePageSelect = (pageNumber) => {
     setCurrentPage(pageNumber);
   };
 
-const getPageNumbers = () => {
-  const pages = [];
-  const startPage = Math.max(1, currentPage - Math.floor(maxPageButtons / 2));
-  const endPage = Math.min(totalPages, startPage + maxPageButtons - 1);
+  const gerarPDF = () => {
+    const doc = new jsPDF();
+    
+    // Adiciona o título do PDF
+    doc.text("Relatório de Histórico", 20, 20);
+    
+    // Adiciona os dados da tabela ao PDF
+    currentItems.forEach((item, index) => {
+      doc.text(
+        `${index + 1}. Nome: ${item.nome}, Codnis: ${item.codnis}, Endereço: ${item.endereco}, CPF: ${item.cpf}, Telefone: ${item.telefone}, Data: ${item.date}`,
+        20,
+        30 + index * 10
+      );
+    });
 
-  if (startPage > 1) {
-    pages.push("...");
-  }
-
-  for (let i = startPage; i <= endPage; i++) {
-    pages.push(i);
-  }
-
-  if (endPage < totalPages) {
-    pages.push("...");
-  }
-
-  return pages;
-};
-
-  const pageNumbers = getPageNumbers();
+    // Salva o PDF com o nome "historico.pdf"
+    doc.save("historico.pdf");
+  };
 
   return (
     <div className={styles.historicoContainer}>
@@ -347,6 +341,10 @@ const getPageNumbers = () => {
         />
         <Button onClick={handleShowAddModal} className={styles.createButton}>
           Criar
+        </Button>
+                {/* Botão para gerar PDF */}
+        <Button onClick={gerarPDF} className={styles.createButton}>
+        Gerar PDF
         </Button>
       </div>
 
@@ -391,37 +389,22 @@ const getPageNumbers = () => {
           </tbody>
         </table>
 
-        {/* Controles de Paginação */}
+        {/* Menu Suspenso para Selecionar Página */}
         <div className={styles.pagination}>
-          <Button
-            className={styles.pageButton}
-            disabled={currentPage === 1}
-            onClick={() => handlePageChange(currentPage - 1)}
+          <DropdownButton
+            id="dropdown-basic-button"
+            title={`Página ${currentPage}`}
+            variant="secondary"
           >
-            Anterior
-          </Button>
-          {pageNumbers.map((page, index) => (
-            page === "..." ? (
-              <span key={index}>...</span>
-            ) : (
-              <Button
-                key={page}
-                className={`${styles.pageButton} ${
-                  currentPage === page ? styles.activePage : ""
-                }`}
-                onClick={() => handlePageChange(page)}
+            {[...Array(totalPages).keys()].map(page => (
+              <Dropdown.Item
+                key={page + 1}
+                onClick={() => handlePageSelect(page + 1)}
               >
-                {page}
-              </Button>
-            )
-          ))}
-          <Button
-            className={styles.pageButton}
-            disabled={currentPage === totalPages}
-            onClick={() => handlePageChange(currentPage + 1)}
-          >
-            Próximo
-          </Button>
+                Página {page + 1}
+              </Dropdown.Item>
+            ))}
+          </DropdownButton>
         </div>
       </div>
 
