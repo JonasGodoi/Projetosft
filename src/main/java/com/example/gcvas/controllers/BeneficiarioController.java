@@ -30,7 +30,7 @@ public class BeneficiarioController {
 
      @GetMapping("/{id}")
     public ResponseEntity<Beneficiario> getBeneficiario(@PathVariable("id") Long id) {
-        Beneficiario obj = this.beneficiarioService.findById(id);
+        Beneficiario obj = this.beneficiarioService.findByid(id);
 
         return ResponseEntity.ok().body(obj);
     }

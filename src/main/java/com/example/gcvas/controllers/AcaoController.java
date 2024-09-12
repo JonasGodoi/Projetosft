@@ -30,11 +30,10 @@ public class AcaoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<Acao> getAcao(@PathVariable("id") Long id) {
-        Acao obj = this.acaoService.findById(id);
+        Acao obj = this.acaoService.findByid(id);
 
         return ResponseEntity.ok().body(obj);
     }
-
     @PostMapping("path")
     public ResponseEntity<Void> postAcao(@RequestBody @Valid Acao obj) {
         this.acaoService.create(obj);
