@@ -7,7 +7,7 @@ function Menu() {
     { text: "Agendar Consulta", path: "/agendar" },
     { text: "Encaminhar Usuário", path: "/encaminhar" }, // Ajuste o caminho conforme necessário
     { text: "Gerar Relatórios", path: "/relatoriosecretaria" }, // Ajuste o caminho conforme necessário
-    { text: "Consultar Histórico", path: "/gerenciarhistorico" } // Ajuste o caminho conforme necessário
+    { text: "Agendamentos e Encaminhamentos", path: "/consultarhistoricoagen" } // Ajuste o caminho conforme necessário
   ];
 
   return (

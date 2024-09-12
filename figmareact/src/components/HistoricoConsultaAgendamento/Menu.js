@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Button, Dropdown, DropdownButton, Form, Modal } from "react-bootstrap";
-import styles from "./GerenciarBeneficiado.module.css";
+import styles from "./ConsultarHistoricoAgen.module.css";
 
 function HistoricoList() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -273,7 +273,7 @@ function HistoricoList() {
 
   const handleSearch = (event) => setSearchTerm(event.target.value);
 
-  const handleShowAddModal = () => setShowAddModal(true);
+
   const handleCloseAddModal = () => setShowAddModal(false);
 
   const handleShowEditModal = (item) => {
@@ -322,9 +322,8 @@ function HistoricoList() {
           onChange={handleSearch}
           className={styles.searchInput}
         />
-        <Button onClick={handleShowAddModal} className={styles.createButton}>
-          Criar
-        </Button>
+
+
 
 
       </div>

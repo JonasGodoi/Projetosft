@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Button, Dropdown, DropdownButton, Form, Modal } from "react-bootstrap";
-import styles from "./GerenciarBeneficiado.module.css";
+import styles from "./RequisicaoSecretaria.module.css";
 
 function HistoricoList() {
   const [searchTerm, setSearchTerm] = useState("");

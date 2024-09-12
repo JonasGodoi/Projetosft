@@ -3,13 +3,16 @@ import React from 'react';
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import AgendarConsulta from './components/Agendar/AgendarConsulta';
 import GerenciarBeneficiado from './components/Beneficiado/GerenciarBeneficiado';
+import BeneficiosAssistente from './components/Beneficio/BeneficiosAssistente';
 import EncaminharPessoa from './components/Encaminhar/EncaminharPessoa';
 import MenuHistorico from './components/Historico/MenuHistorico';
+import ConsultarHistoricoAgen from './components/HistoricoConsultaAgendamento/ConsultarHistoricoAgen';
 import LoginPage from './components/Login/LoginPage';
 import MenuAssistente from './components/MenuAssistente/MenuAssistente';
 import MenuSecretaria from './components/MenuSecretaria/MenuSecretaria';
 import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 import RelatorioAssistente from './components/RelatorioAssistente/RelatorioAssistente';
+import RequisicaoSecretaria from './components/Requisicao/RequisicaoSecretaria';
 import GerenciarUsuario from './components/Usuario/GerenciarBeneficiado';
 
 
@@ -82,6 +85,30 @@ function App() {
                 <GerenciarUsuario />
               </PrivateRoute>
             }
+            />
+            <Route
+              path="/consultarhistoricoagen"
+              element={
+                <PrivateRoute>
+                  <ConsultarHistoricoAgen />
+                </PrivateRoute>
+              }
+              />
+              <Route
+                path="/requisicaosecretaria"
+                element={
+                  <PrivateRoute>
+                    <RequisicaoSecretaria />
+                  </PrivateRoute>
+                }
+                />
+                <Route
+                  path="/beneficios"
+                  element={
+                    <PrivateRoute>
+                      <BeneficiosAssistente />
+                    </PrivateRoute>
+                  }
           />
       </Routes>
     </Router>

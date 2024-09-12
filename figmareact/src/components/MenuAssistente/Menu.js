@@ -5,10 +5,11 @@ import styles from "./MenuAssistente.module.css";
 function Menu() {
   const menuItems = [
     { text: "Gerenciar Usuario", path: "/gerenciarusuario" },
-    { text: "Gerenciar Beneficiário", path: "/gerenciarbeneficiario" }, 
-    /*{ text: "Gerenciar Benefícios", path: "/abeneficio" },*/ 
+    { text: "Beneficiário", path: "/gerenciarbeneficiario" }, 
+    { text: "Benefícios", path: "/beneficios" },
+    { text: "Requisições", path: "/requisicaosecretaria" },
     { text: "Gerar Relatórios", path: "/relatoriosecretaria" }, 
-    { text: "Consultar Histórico", path: "/historico" }, 
+
   ];
 
   return (
