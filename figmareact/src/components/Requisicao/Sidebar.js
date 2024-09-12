@@ -17,7 +17,7 @@ function Sidebar() {
         Secretaria de Assistência Social
       </h1>
       <h2 className={styles.formTitle}>
-        Gerenciar Beneficiario
+        Requisições
       </h2>
       {/* Adicione o botão de logout */}
 
