@@ -3,10 +3,12 @@ package com.example.gcvas.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.gcvas.models.Beneficiario;
 import com.example.gcvas.repositories.BeneficiarioRepository;
 
+@Service
 public class BeneficiarioService {
     
     @Autowired

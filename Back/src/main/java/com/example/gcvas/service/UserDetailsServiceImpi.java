@@ -6,12 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.example.gcvas.Security.UserSpringSecurity;
 import com.example.gcvas.models.User;
 import com.example.gcvas.repositories.UserRepository;
 
-
+@Service
 public class UserDetailsServiceImpi implements UserDetailsService {
     
     @Autowired

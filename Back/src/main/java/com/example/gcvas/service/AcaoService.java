@@ -3,10 +3,12 @@ package com.example.gcvas.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.example.gcvas.models.Acao;
 import com.example.gcvas.repositories.AcaoRepository;
 
+@Service
 public class AcaoService {
     
     @Autowired
