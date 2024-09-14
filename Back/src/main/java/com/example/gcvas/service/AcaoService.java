@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.example.gcvas.models.Acao;
 import com.example.gcvas.repositories.AcaoRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class AcaoService {
     
@@ -29,13 +31,14 @@ public class AcaoService {
         throw new RuntimeException("Ação não encontrada {id:"+id+"} ");
     }
 
-    
+    @Transactional
     public Acao create(Acao obj){
         obj.setId(null);
 
        return  this.acaoRepository.save(obj);
     }
 
+    @Transactional
     public Acao update(Acao newObj){
 
         Acao obj =  this.findByid(newObj.getId());

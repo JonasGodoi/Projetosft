@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.example.gcvas.models.Beneficios;
 import com.example.gcvas.repositories.BeneficiosRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class BeneficiosService {
     
@@ -29,12 +31,14 @@ public class BeneficiosService {
         throw new RuntimeException("Beneficio não encontrado {id:"+id+"} ");
     }
 
+    @Transactional
     public Beneficios create(Beneficios obj){
         obj.setId(null);
 
        return  this.beneficiosRepository.save(obj);
     }
 
+    @Transactional
     public Beneficios update(Beneficios newObj){
 
         Beneficios obj =  this.findByid(newObj.getId());

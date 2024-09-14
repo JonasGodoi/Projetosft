@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.example.gcvas.models.Beneficiario;
 import com.example.gcvas.repositories.BeneficiarioRepository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class BeneficiarioService {
     
@@ -30,12 +32,14 @@ public class BeneficiarioService {
         throw new RuntimeException("Beneficiario não encontrado {id:"+id+"} ");
     }
 
+    @Transactional
     public Beneficiario create(Beneficiario obj){
         obj.setId(null);
 
        return  this.beneficiarioRepository.save(obj);
     }
 
+    @Transactional
     public Beneficiario update(Beneficiario newObj){
 
         Beneficiario obj =  this.findByid(newObj.getId());

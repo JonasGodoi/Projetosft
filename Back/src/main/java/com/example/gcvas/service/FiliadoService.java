@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.example.gcvas.models.Filiado;
 import com.example.gcvas.repositories.FiliadoRepository;
 
+import jakarta.transaction.Transactional;
+
 
 @Service
 public class FiliadoService {
@@ -30,12 +32,14 @@ public class FiliadoService {
         throw new RuntimeException("Filiado não encontrado {id:"+id+"} ");
     }
 
+    @Transactional
     public Filiado create(Filiado obj){
         obj.setId(null);
 
        return  this.filiadoRepository.save(obj);
     }
 
+    @Transactional
     public Filiado update(Filiado newObj){
 
         Filiado obj =  this.findByid(newObj.getId());

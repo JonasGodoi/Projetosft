@@ -17,6 +17,8 @@ import com.example.gcvas.service.exceptions.AuthorizationException;
 import com.example.gcvas.service.exceptions.DataBindingViolationException;
 import com.example.gcvas.service.exceptions.ObjectNotFoundException;
 
+import jakarta.transaction.Transactional;
+
 
 
 @Service
@@ -51,6 +53,7 @@ public class UserService {
             throw new AuthorizationException("Acesso negado!");
     }
 
+    @Transactional
     public User create(User obj){
         VerificaADM();
         obj.setId(null);
@@ -58,6 +61,7 @@ public class UserService {
        return  this.userRepository.save(obj);
     }
 
+    @Transactional
     public User update(User newObj){
 
       User obj =  this.findById(newObj.getId());

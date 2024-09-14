@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import com.example.gcvas.models.Requisicao;
 import com.example.gcvas.repositories.RequisicaoRespository;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class RequisicaoService {
     
@@ -29,12 +31,14 @@ public Requisicao findByid(Long id) {
         throw new RuntimeException("Requisição não encontrada {id:"+id+"} ");
     }
 
+    @Transactional
 public Requisicao create(Requisicao obj){
         obj.setId(null);
 
        return  this.requisicaoRespository.save(obj);
     }
 
+    @Transactional
     public Requisicao update(Requisicao newObj){
 
         Requisicao obj =  this.findByid(newObj.getId());
