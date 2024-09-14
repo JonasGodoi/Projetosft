@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styles from "./MenuHistorico.module.css";
 
 function HistoricoList() {
-  const [searchTerm, setSearchTerm] = useState(""); // Estado para armazenar o termo de pesquisa
+  const [searchTerm, setSearchTerm] = useState(""); 
 
   const historicoData = [
 {
@@ -13,55 +13,11 @@ function HistoricoList() {
   telefone: "(11) 40025-0000",
   date: "27/02/1996"
 },
-{
-  nome: "stanozolol",
-  codnis: "004002",
-  endereco: "beco do pump, 404",
-  cpf: "004.004.004-04",
-  telefone: "(21) 12345-0044",
-  date: "01/03/1997"
-},
-{
-  nome: "oxandrolona",
-  codnis: "001003",
-  endereco: "avenida anabol, 101",
-  cpf: "001.001.001-01",
-  telefone: "(31) 65432-0010",
-  date: "01/06/1997"
-},
-{
-  nome: "enantato",
-  codnis: "007004",
-  endereco: "travessa venosa, 707",
-  cpf: "007.007.007-07",
-  telefone: "(41) 88888-0077",
-  date: "01/09/1996"
-},
-{
-  nome: "boldenona",
-  codnis: "039005",
-  endereco: "rua cavalo bravo, 393",
-  cpf: "039.039.039-39",
-  telefone: "(51) 99999-3939",
-  date: "14/10/1996"
-},
-{
-  nome: "trembolona",
-  codnis: "052006",
-  endereco: "ladeira braba, 520",
-  cpf: "052.052.052-52",
-  telefone: "(61) 55555-5200",
-  date: "08/12/1996"
-}
-    // Adicione mais itens conforme necessário
   ];
-
-  // Função para atualizar o valor de busca
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
 
-  // Filtrar a lista com base no termo de pesquisa
   const filteredData = historicoData.filter((item) => {
     const searchValue = searchTerm.toLowerCase();
     return (

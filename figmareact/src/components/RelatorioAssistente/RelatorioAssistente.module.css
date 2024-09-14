@@ -16,7 +16,7 @@
   padding-right: 250px;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 500px) {
   .card {
     max-width: 100%;
     padding-right: 20px;
@@ -29,7 +29,7 @@
   justify-content: space-between;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 500px) {
   .content {
     flex-direction: column;
     align-items: stretch;
@@ -45,7 +45,7 @@
   margin-left: 0;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 500px) {
   .column {
     width: 100%;
   }
@@ -60,11 +60,11 @@
   flex-direction: column;
   color: #fff;
   text-align: center;
-  width: 55%;
+  width: 60%;
   font: 800 20px Inter, sans-serif;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 500px) {
   .sidebarContainer {
     margin-top: 40px;
     padding-bottom: 100px;
@@ -90,7 +90,7 @@
   padding: 0;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 500px) {
   .sidebarTitle {
     margin-top: 40px;
   }
@@ -118,7 +118,7 @@
   font: 800 15px Inter, sans-serif;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 500px) {
   .menuContainer {
     margin-top: 40px;
   }
@@ -137,7 +137,7 @@
   margin-top: 0;
 }
 
-@media (max-width: 991px) {
+@media (max-width: 500px) {
   .menuItem {
     padding: 0 20px;
   }
@@ -165,12 +165,13 @@
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 50px;
+  padding: 20px;
+
   padding-left: 1%;
   margin-top: 150px;
   width: 90%;
   max-width: 1200px;
-  margin-left: auto;
+  margin-left: 70px;
   margin-right: auto;
 }
 
@@ -179,6 +180,10 @@
   align-items: center;
   gap: 10px;
   padding-left: 200%;
+  position: relative;
+  bottom: 20px;
+  right: 269px;
+  
 }
 
 .searchInput {
@@ -194,18 +199,21 @@
 
 .searchInput::placeholder {
   color: #ffffff;
+  background-color: #4A8920;
+  color: #ddd;
 }
 
 .createButton {
   width: 200px;
   padding: 8.5px;
-  
+
   border-radius: 4px;
   border: 1px solid #ddd;
   font-size: 16px;
   
   background-color: #ffffff;
   color:#000000
+  
 }
 
 .historicoTable {
@@ -223,13 +231,17 @@
 
 .historicoTable th, .historicoTable td {
   border: 1px solid #ddd;
-  padding: 12px;
+  padding: 15px;
   text-align: left;
   white-space: nowrap;
   max-width: 170px;
   overflow: hidden;
+  margin-top: 70px;
   text-overflow: ellipsis;
+  
+ 
 }
+
 
 .historicoTable th {
   background-color: #4f9122;
@@ -245,7 +257,7 @@
   display: flex;
   justify-content: center;
   margin-top: 40px;
-  padding-right: 200px;
+
   gap: 20px;
 }
 
@@ -281,6 +293,7 @@
   color: #fff;
   cursor: pointer;
   font-size: 14px;
+  
 }
 
 

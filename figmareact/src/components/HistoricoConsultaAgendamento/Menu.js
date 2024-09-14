@@ -1,7 +1,9 @@
-
 import React, { useState } from "react";
-import { Button, Dropdown, DropdownButton, Form, Modal } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 import styles from "./ConsultarHistoricoAgen.module.css";
+import { HistoricoTable } from "./HistoricoTable";
+import { AddModal, DeleteModal, EditModal } from "./Modals";
+import { Pagination } from "./Pagination";
 
 function HistoricoList() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -10,7 +12,7 @@ function HistoricoList() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Número de itens por página
+  const itemsPerPage = 7;
 
   const historicoData = [
     {
@@ -21,272 +23,7 @@ function HistoricoList() {
       telefone: "(11) 98765-1234",
       date: "01/01/1990",
     },
-    {
-      nome: "Maxwell Iron",
-      codnis: "D4E5F6",
-      endereco: "Avenida Galáxia, 456",
-      cpf: "654.321.098-11",
-      telefone: "(21) 87654-3210",
-      date: "14/02/1985",
-    },
-    {
-      nome: "Aurora Boreal",
-      codnis: "G7H8I9",
-      endereco: "Praça do Sol, 123",
-      cpf: "987.654.321-22",
-      telefone: "(31) 76543-2109",
-      date: "23/03/1992",
-    },
-    {
-      nome: "Orion Hunter",
-      codnis: "J1K2L3",
-      endereco: "Rua do Cometa, 333",
-      cpf: "876.543.210-33",
-      telefone: "(41) 65432-1098",
-      date: "05/04/1988",
-    },
-    {
-      nome: "Nebula Skye",
-      codnis: "M4N5O6",
-      endereco: "Avenida Astral, 777",
-      cpf: "543.210.987-44",
-      telefone: "(51) 54321-0987",
-      date: "16/05/1995",
-    },
-    {
-      nome: "Zephyr Gale",
-      codnis: "P7Q8R9",
-      endereco: "Rua das Nuvens, 222",
-      cpf: "210.987.654-55",
-      telefone: "(61) 43210-9876",
-      date: "28/06/1980",
-    },
-    {
-      nome: "Cyra Moon",
-      codnis: "S1T2U3",
-      endereco: "Praça dos Planetas, 888",
-      cpf: "109.876.543-66",
-      telefone: "(71) 32109-8765",
-      date: "09/07/1993",
-    },
-    {
-      nome: "Eclipse Dawn",
-      codnis: "V4W5X6",
-      endereco: "Avenida Lunar, 555",
-      cpf: "654.321.098-77",
-      telefone: "(81) 21098-7654",
-      date: "20/08/1991",
-    },
-    {
-      nome: "Sirius Blaze",
-      codnis: "Y7Z8A9",
-      endereco: "Rua do Vento, 444",
-      cpf: "432.109.876-88",
-      telefone: "(91) 10987-6543",
-      date: "01/09/1987",
-    },
-    {
-      nome: "Celeste Ray",
-      codnis: "B1C2D3",
-      endereco: "Rua da Aurora, 111",
-      cpf: "321.098.765-99",
-      telefone: "(11) 09876-5432",
-      date: "15/10/1994",
-    },
-    {
-      nome: "Phoenix Ember",
-      codnis: "E4F5G6",
-      endereco: "Avenida do Crepúsculo, 999",
-      cpf: "210.987.654-10",
-      telefone: "(21) 98765-4321",
-      date: "29/11/1990",
-    },
-    {
-      nome: "Vega Night",
-      codnis: "H7I8J9",
-      endereco: "Rua do Eclipse, 777",
-      cpf: "109.876.543-21",
-      telefone: "(31) 87654-3210",
-      date: "10/12/1982",
-    },
-    {
-      nome: "Andromeda Blaze",
-      codnis: "K1L2M3",
-      endereco: "Praça dos Astros, 555",
-      cpf: "654.321.987-32",
-      telefone: "(41) 76543-2109",
-      date: "21/01/1995",
-    },
-    {
-      nome: "Lyra Storm",
-      codnis: "N4O5P6",
-      endereco: "Rua do Horizonte, 333",
-      cpf: "987.654.321-43",
-      telefone: "(51) 65432-1098",
-      date: "13/02/1990",
-    },
-    {
-      nome: "Orion Skye",
-      codnis: "Q7R8S9",
-      endereco: "Avenida da Nebulosa, 222",
-      cpf: "876.543.210-54",
-      telefone: "(61) 54321-0987",
-      date: "25/03/1988",
-    },
-    {
-      nome: "Nova Star",
-      codnis: "T1U2V3",
-      endereco: "Rua do Universo, 111",
-      cpf: "765.432.109-65",
-      telefone: "(71) 43210-9876",
-      date: "08/04/1992",
-    },
-      {
-    nome: "Luna Starling",
-    codnis: "A1B2C3",
-    endereco: "Rua das Estrelas, 999",
-    cpf: "321.654.987-00",
-    telefone: "(11) 98765-1234",
-    date: "01/01/1990",
-  },
-  {
-    nome: "Maxwell Iron",
-    codnis: "D4E5F6",
-    endereco: "Avenida Galáxia, 456",
-    cpf: "654.321.098-11",
-    telefone: "(21) 87654-3210",
-    date: "14/02/1985",
-  },
-  {
-    nome: "Aurora Boreal",
-    codnis: "G7H8I9",
-    endereco: "Praça do Sol, 123",
-    cpf: "987.654.321-22",
-    telefone: "(31) 76543-2109",
-    date: "23/03/1992",
-  },
-  {
-    nome: "Orion Hunter",
-    codnis: "J1K2L3",
-    endereco: "Rua do Cometa, 333",
-    cpf: "876.543.210-33",
-    telefone: "(41) 65432-1098",
-    date: "05/04/1988",
-  },
-  {
-    nome: "Nebula Skye",
-    codnis: "M4N5O6",
-    endereco: "Avenida Astral, 777",
-    cpf: "543.210.987-44",
-    telefone: "(51) 54321-0987",
-    date: "16/05/1995",
-  },
-  {
-    nome: "Zephyr Gale",
-    codnis: "P7Q8R9",
-    endereco: "Rua das Nuvens, 222",
-    cpf: "210.987.654-55",
-    telefone: "(61) 43210-9876",
-    date: "28/06/1980",
-  },
-  {
-    nome: "Cyra Moon",
-    codnis: "S1T2U3",
-    endereco: "Praça dos Planetas, 888",
-    cpf: "109.876.543-66",
-    telefone: "(71) 32109-8765",
-    date: "09/07/1993",
-  },
-  {
-    nome: "Eclipse Dawn",
-    codnis: "V4W5X6",
-    endereco: "Avenida Lunar, 555",
-    cpf: "654.321.098-77",
-    telefone: "(81) 21098-7654",
-    date: "20/08/1991",
-  },
-  {
-    nome: "Sirius Blaze",
-    codnis: "Y7Z8A9",
-    endereco: "Rua do Vento, 444",
-    cpf: "432.109.876-88",
-    telefone: "(91) 10987-6543",
-    date: "01/09/1987",
-  },
-  {
-    nome: "Celeste Ray",
-    codnis: "B1C2D3",
-    endereco: "Rua da Aurora, 111",
-    cpf: "321.098.765-99",
-    telefone: "(11) 09876-5432",
-    date: "15/10/1994",
-  },
-  {
-    nome: "Phoenix Ember",
-    codnis: "E4F5G6",
-    endereco: "Avenida do Crepúsculo, 999",
-    cpf: "210.987.654-10",
-    telefone: "(21) 98765-4321",
-    date: "29/11/1990",
-  },
-  {
-    nome: "Vega Night",
-    codnis: "H7I8J9",
-    endereco: "Rua do Eclipse, 777",
-    cpf: "109.876.543-21",
-    telefone: "(31) 87654-3210",
-    date: "10/12/1982",
-  },
-  {
-    nome: "Andromeda Blaze",
-    codnis: "K1L2M3",
-    endereco: "Praça dos Astros, 555",
-    cpf: "654.321.987-32",
-    telefone: "(41) 76543-2109",
-    date: "21/01/1995",
-  },
-  {
-    nome: "Lyra Storm",
-    codnis: "N4O5P6",
-    endereco: "Rua do Horizonte, 333",
-    cpf: "987.654.321-43",
-    telefone: "(51) 65432-1098",
-    date: "13/02/1990",
-  },
-  {
-    nome: "Orion Skye",
-    codnis: "Q7R8S9",
-    endereco: "Avenida da Nebulosa, 222",
-    cpf: "876.543.210-54",
-    telefone: "(61) 54321-0987",
-    date: "25/03/1988",
-  },
-  {
-    nome: "Nova Star",
-    codnis: "T1U2V3",
-    endereco: "Rua do Universo, 111",
-    cpf: "765.432.109-65",
-    telefone: "(71) 43210-9876",
-    date: "08/04/1992",
-  },
   ];
-
-  const handleSearch = (event) => setSearchTerm(event.target.value);
-
-
-  const handleCloseAddModal = () => setShowAddModal(false);
-
-  const handleShowEditModal = (item) => {
-    setSelectedItem(item);
-    setShowEditModal(true);
-  };
-  const handleCloseEditModal = () => setShowEditModal(false);
-
-  const handleShowDeleteModal = (item) => {
-    setSelectedItem(item);
-    setShowDeleteModal(true);
-  };
-  const handleCloseDeleteModal = () => setShowDeleteModal(false);
 
   const filteredData = historicoData.filter((item) => {
     const searchValue = searchTerm.toLowerCase();
@@ -303,14 +40,7 @@ function HistoricoList() {
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
-
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-
-  const handlePageSelect = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
-  
 
   return (
     <div className={styles.historicoContainer}>
@@ -319,220 +49,35 @@ function HistoricoList() {
           type="text"
           placeholder="Pesquisar..."
           value={searchTerm}
-          onChange={handleSearch}
+          onChange={(e) => setSearchTerm(e.target.value)}
           className={styles.searchInput}
         />
-
-
-
-
+        <Button onClick={() => setShowAddModal(true)} className={styles.createButton}>
+          Criar
+        </Button>
       </div>
 
-      <div className={styles.historicoTableContainer}>
-        <table className={styles.historicoTable}>
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Codnis</th>
-              <th>Endereço</th>
-              <th>CPF</th>
-              <th>Telefone</th>
-              <th>Date</th>
-              <th>Ações</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentItems.map((item, index) => (
-              <tr key={index}>
-                <td>{item.nome}</td>
-                <td>{item.codnis}</td>
-                <td>{item.endereco}</td>
-                <td>{item.cpf}</td>
-                <td>{item.telefone}</td>
-                <td>{item.date}</td>
-                <td>
-                  <Button
-                    className={`${styles.actionButton} ${styles.editButton}`}
-                    onClick={() => handleShowEditModal(item)}
-                  >
-                    Editar
-                  </Button>
-                  <Button
-                    className={`${styles.actionButton} ${styles.deleteButton}`}
-                    onClick={() => handleShowDeleteModal(item)}
-                  >
-                    Excluir
-                  </Button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <HistoricoTable
+        items={currentItems}
+        onEdit={(item) => {
+          setSelectedItem(item);
+          setShowEditModal(true);
+        }}
+        onDelete={(item) => {
+          setSelectedItem(item);
+          setShowDeleteModal(true);
+        }}
+      />
 
-        {/* Menu Suspenso para Selecionar Página */}
-        <div className={styles.pagination}>
-          <DropdownButton
-            id="dropdown-basic-button"
-            title={`Página ${currentPage}`}
-            variant="secondary"
-          >
-            {[...Array(totalPages).keys()].map(page => (
-              <Dropdown.Item
-                key={page + 1}
-                onClick={() => handlePageSelect(page + 1)}
-              >
-                Página {page + 1}
-              </Dropdown.Item>
-            ))}
-          </DropdownButton>
-        </div>
-      </div>
+      <Pagination
+        currentPage={currentPage}
+        totalPages={totalPages}
+        onPageSelect={(page) => setCurrentPage(page)}
+      />
 
-      {/* Modal para adicionar um novo usuário */}
-      <Modal show={showAddModal} onHide={handleCloseAddModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Adicionar Usuário</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="formNome">
-              <Form.Label>Nome</Form.Label>
-              <Form.Control type="text" placeholder="Nome" />
-            </Form.Group>
-            <Form.Group controlId="formCodnis">
-              <Form.Label>Codnis</Form.Label>
-              <Form.Control type="text" placeholder="Codnis" />
-            </Form.Group>
-            <Form.Group controlId="formEndereco">
-              <Form.Label>Endereço</Form.Label>
-              <Form.Control type="text" placeholder="Endereço" />
-            </Form.Group>
-            <Form.Group controlId="formCpf">
-              <Form.Label>CPF</Form.Label>
-              <Form.Control type="text" placeholder="CPF" />
-            </Form.Group>
-            <Form.Group controlId="formTelefone">
-              <Form.Label>Telefone</Form.Label>
-              <Form.Control type="text" placeholder="Telefone" />
-            </Form.Group>
-            <Form.Group controlId="formDate">
-              <Form.Label>Date</Form.Label>
-              <Form.Control type="text" placeholder="Date" />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseAddModal}>
-            Cancelar
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              console.log("Criar item");
-              handleCloseAddModal();
-            }}
-          >
-            Salvar
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      {/* Modal para editar um usuário */}
-      <Modal show={showEditModal} onHide={handleCloseEditModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Editar Usuário</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="formNome">
-              <Form.Label>Nome</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Nome"
-                defaultValue={selectedItem?.nome || ""}
-              />
-            </Form.Group>
-            <Form.Group controlId="formCodnis">
-              <Form.Label>Codnis</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Codnis"
-                defaultValue={selectedItem?.codnis || ""}
-              />
-            </Form.Group>
-            <Form.Group controlId="formEndereco">
-              <Form.Label>Endereço</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Endereço"
-                defaultValue={selectedItem?.endereco || ""}
-              />
-            </Form.Group>
-            <Form.Group controlId="formCpf">
-              <Form.Label>CPF</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="CPF"
-                defaultValue={selectedItem?.cpf || ""}
-              />
-            </Form.Group>
-            <Form.Group controlId="formTelefone">
-              <Form.Label>Telefone</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Telefone"
-                defaultValue={selectedItem?.telefone || ""}
-              />
-            </Form.Group>
-            <Form.Group controlId="formDate">
-              <Form.Label>Date</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Date"
-                defaultValue={selectedItem?.date || ""}
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseEditModal}>
-            Cancelar
-          </Button>
-          <Button
-            variant="primary"
-            onClick={() => {
-              console.log("Atualizar item");
-              handleCloseEditModal();
-            }}
-          >
-            Salvar
-          </Button>
-        </Modal.Footer>
-      </Modal>
-
-      {/* Modal para excluir um usuário */}
-      <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
-        <Modal.Header closeButton>
-          <Modal.Title>Excluir Usuário</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          Tem certeza de que deseja excluir este usuário?
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseDeleteModal}>
-            Cancelar
-          </Button>
-          <Button
-            variant="danger"
-            onClick={() => {
-              console.log("Excluir item");
-              handleCloseDeleteModal();
-            }}
-          >
-            Excluir
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      <AddModal show={showAddModal} handleClose={() => setShowAddModal(false)} />
+      <EditModal show={showEditModal} handleClose={() => setShowEditModal(false)} selectedItem={selectedItem} />
+      <DeleteModal show={showDeleteModal} handleClose={() => setShowDeleteModal(false)} selectedItem={selectedItem} />
     </div>
   );
 }

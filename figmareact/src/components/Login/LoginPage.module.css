@@ -8,7 +8,7 @@
     transform: scale(1.2);
   }
   
-  @media (max-width: 991px) {
+  @media (max-width: 500px) {
     .loginPage {
       padding: 300px 200px;
     }
@@ -24,8 +24,14 @@
     height: 500px;
   }
   
-  @media (max-width: 991px) {
+  @media (max-width: 500px) {
     .loginContainer {
+      flex-direction: column;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .sidebar {
       flex-direction: column;
     }
   }
@@ -57,12 +63,16 @@
     width: 232px;
     border-radius: 16px 0 0 0;
   }
-  
+  @media(max-width: 500px){
+    .logo{
+      width: 100%;
+    }
+  }
   .departmentName {
     margin-top: 120px;
   }
   
-  @media (max-width: 200px) {
+  @media (max-width: 50px) {
     .departmentName {
       margin-top: 40px;
     }

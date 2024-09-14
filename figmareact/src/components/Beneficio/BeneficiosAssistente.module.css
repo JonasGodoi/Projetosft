@@ -99,7 +99,7 @@
 .formTitle {
   align-self: center;
   position: relative;
-  left: 260%;
+  left: 290%;
   bottom: 60%;
   margin-left: -250px;
   color: #4f9122;
@@ -179,12 +179,15 @@
   align-items: center;
   gap: 10px;
   padding-left: 68%;
+  position: relative;
+  top: 80px;
+  right: 89px;
 }
 
 .searchInput {
   width: 60%;
   padding: 10px;
-  margin-bottom: 24px;
+  margin-bottom: 20px;
   border-radius: 4px;
   border: 1px solid #ddd;
   font-size: 16px;
@@ -212,6 +215,10 @@
   background-color: #fff;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
+  position: relative;
+  top: 50%;
+  left: 10%;
+  margin-bottom: 5%;
 }
 
 .historicoTableContainer {
@@ -224,7 +231,7 @@
   padding: 12px;
   text-align: left;
   white-space: nowrap;
-  max-width: 170px;
+  max-width: 200px;
   overflow: hidden;
   text-overflow: ellipsis;
 }

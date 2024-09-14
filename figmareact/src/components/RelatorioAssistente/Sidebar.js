@@ -1,6 +1,5 @@
-// Sidebar.js
 import React from "react";
-import logoImage from "../images/logo (1).png"; // Ajuste o caminho conforme sua estrutura
+import logoImage from "../images/logo (1).png";
 import styles from './RelatorioAssistente.module.css';
 
 function Sidebar() {
@@ -18,8 +17,6 @@ function Sidebar() {
       <h2 className={styles.formTitle}>
         Gerar Relatorio
       </h2>
-      {/* Adicione o botão de logout */}
-
     </aside>
   );
 }

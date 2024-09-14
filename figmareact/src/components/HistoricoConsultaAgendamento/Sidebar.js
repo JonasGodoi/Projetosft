@@ -19,7 +19,6 @@ function Sidebar() {
       <h2 className={styles.formTitle}>
         Historico de Ações
       </h2>
-      {/* Adicione o botão de logout */}
 
     </aside>
   );

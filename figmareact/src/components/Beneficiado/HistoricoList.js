@@ -1,26 +1,30 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
-import styles from "./BeneficiosAssistente.module.css";
+import AddEditModal from "./AddEditModal";
+import DeleteModal from "./DeleteModal";
+import styles from "./GerenciarBeneficiado.module.css";
 import HistoricoTable from "./HistoricoTable";
-import Modals from "./Modals";
 import Pagination from "./Pagination";
 
-const HistoricoList = () => {
+function HistoricoList() {
   const [searchTerm, setSearchTerm] = useState("");
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5; // Número de itens por página
+  const itemsPerPage = 8;
 
   const historicoData = [
     {
-      CodBeneficio: "A1B2C3",
-      Categoria: "Saúde",
-      DescriçãoBeneficio: "Auxílio médico",
+      nome: "Luna Starling",
+      codnis: "A1B2C3",
+      endereco: "Rua das Estrelas, 999",
+      cpf: "321.654.987-00",
+      telefone: "(11) 98765-1234",
+      date: "01/01/1990",
     },
-    // Adicione mais itens aqui
+      
   ];
 
   const handleSearch = (event) => setSearchTerm(event.target.value);
@@ -43,21 +47,19 @@ const HistoricoList = () => {
   const filteredData = historicoData.filter((item) => {
     const searchValue = searchTerm.toLowerCase();
     return (
-      item.CodBeneficio.toLowerCase().includes(searchValue) ||
-      item.Categoria.toLowerCase().includes(searchValue) ||
-      item.DescriçãoBeneficio.toLowerCase().includes(searchValue)
+      item.nome.toLowerCase().includes(searchValue) ||
+      item.codnis.toLowerCase().includes(searchValue) ||
+      item.endereco.toLowerCase().includes(searchValue) ||
+      item.cpf.toLowerCase().includes(searchValue) ||
+      item.telefone.toLowerCase().includes(searchValue) ||
+      item.date.toLowerCase().includes(searchValue)
     );
   });
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentItems = filteredData.slice(indexOfFirstItem, indexOfLastItem);
-
   const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-
-  const handlePageSelect = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
 
   return (
     <div className={styles.historicoContainer}>
@@ -75,28 +77,38 @@ const HistoricoList = () => {
       </div>
 
       <HistoricoTable
-        currentItems={currentItems}
-        handleShowEditModal={handleShowEditModal}
-        handleShowDeleteModal={handleShowDeleteModal}
+        data={currentItems}
+        onEdit={handleShowEditModal}
+        onDelete={handleShowDeleteModal}
       />
 
       <Pagination
         currentPage={currentPage}
         totalPages={totalPages}
-        handlePageSelect={handlePageSelect}
+        onSelectPage={setCurrentPage}
       />
 
-      <Modals
-        showAddModal={showAddModal}
-        handleCloseAddModal={handleCloseAddModal}
-        showEditModal={showEditModal}
-        handleCloseEditModal={handleCloseEditModal}
-        showDeleteModal={showDeleteModal}
-        handleCloseDeleteModal={handleCloseDeleteModal}
-        selectedItem={selectedItem}
+      <AddEditModal
+        show={showAddModal || showEditModal}
+        handleClose={showAddModal ? handleCloseAddModal : handleCloseEditModal}
+        title={showAddModal ? "Adicionar Usuário" : "Editar Usuário"}
+        item={selectedItem}
+        onSave={() => {
+          console.log("Salvar item");
+          handleCloseAddModal();
+        }}
+      />
+
+      <DeleteModal
+        show={showDeleteModal}
+        handleClose={handleCloseDeleteModal}
+        onDelete={() => {
+          console.log("Excluir item");
+          handleCloseDeleteModal();
+        }}
       />
     </div>
   );
-};
+}
 
 export default HistoricoList;
