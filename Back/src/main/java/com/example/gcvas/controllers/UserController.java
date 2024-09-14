@@ -1,6 +1,7 @@
 package com.example.gcvas.controllers;
 
 import java.net.URI;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -31,6 +32,10 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    @GetMapping
+    public ResponseEntity<List<User>> getUser() {
+        return ResponseEntity.ok().body(userService.findAll());
+    }
 
  @PostMapping("/secretaria")
     public ResponseEntity<Void> postUserSecretaria(@RequestBody @Valid User obj) {

@@ -1,6 +1,7 @@
 package com.example.gcvas.controllers;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,11 @@ public class AcaoController {
     
     @Autowired
     AcaoService acaoService;
+
+    @GetMapping
+    public ResponseEntity<List<Acao>> getAcao() {
+        return ResponseEntity.ok().body(acaoService.findAll());
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Acao> getAcao(@PathVariable("id") Long id) {

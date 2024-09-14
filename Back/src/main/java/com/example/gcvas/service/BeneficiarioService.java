@@ -1,6 +1,7 @@
 package com.example.gcvas.service;
 
 import java.util.Optional;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +14,11 @@ public class BeneficiarioService {
     
     @Autowired
     BeneficiarioRepository beneficiarioRepository;
+
+    public List<Beneficiario> findAll() {
+        return beneficiarioRepository.findAll();
+    }
+
 
     public Beneficiario findByid(Long id) {
 

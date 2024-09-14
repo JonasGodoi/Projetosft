@@ -1,6 +1,7 @@
 package com.example.gcvas.controllers;
 
 import java.net.URI;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,6 +28,11 @@ public class BeneficiosController {
 
     @Autowired
     BeneficiosService beneficiosService;
+
+    @GetMapping
+    public ResponseEntity<List<Beneficios>> getBeneficios() {
+        return ResponseEntity.ok().body(beneficiosService.findAll());
+    }
 
      @GetMapping("/{id}")
     public ResponseEntity<Beneficios> getBeneficios(@PathVariable("id") Long id) {
