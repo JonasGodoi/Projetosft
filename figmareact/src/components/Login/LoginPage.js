@@ -3,14 +3,17 @@ import { MdOutlinePassword, MdPerson } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
 import logoImage from "../images/logo (1).png"; // Ajuste o caminho conforme sua estrutura
 import styles from "./LoginPage.module.css";
+import api from "../../api/api";
+import { jwtDecode } from "jwt-decode";
 
 const LoginPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState(""); // Estado para mensagem de erro
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  /*const handleLogin = (e) => {
     e.preventDefault();
 
     const defaultUsername = "user";
@@ -27,6 +30,40 @@ const LoginPage = () => {
       navigate("/menuassistente", { replace: true });
     } else {
       setErrorMessage("Usuário ou senha inválidos");
+    }
+  };*/
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Fazendo a requisição POST para autenticar o usuário
+      const response = await api.post('/login', {
+        username: username,
+        password: password
+      });
+
+      const authToken = response.headers.getAuthorization();
+      const decoded = jwtDecode(authToken.slice(7));
+      console.log(decoded);
+
+      // Armazena o token JWT no localStorage
+      localStorage.setItem('authToken', authToken);
+
+      const userResponse = await api.get(`/user/${decoded.jti}`)
+      console.log(userResponse.data);
+
+      localStorage.setItem("isAuthenticated", "true");
+
+      // Redireciona o usuário de acordo com o tipo de perfil
+      if (userResponse.data.profile.includes("ADM")) {
+        navigate("/menuassistente", { replace: true });
+      } else if (userResponse.data.profile.includes("SECRETARIA")) {
+        navigate("/menusecretaria", { replace: true });
+      } 
+    } catch (err) {
+      console.log(err)
+      setError('Usuário ou senha inválidos');
     }
   };
 

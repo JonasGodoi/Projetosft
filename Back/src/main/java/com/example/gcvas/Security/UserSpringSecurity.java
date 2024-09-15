@@ -1,7 +1,8 @@
 package com.example.gcvas.Security;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.security.core.GrantedAuthority;
@@ -24,11 +25,13 @@ public class UserSpringSecurity implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public UserSpringSecurity(Long id, String username, String password, Set<TipoUser> tipoUsers) {
+    public UserSpringSecurity(Long id, String username, String password, TipoUser tipoUser) {
+        List<TipoUser> tipoUsers = new ArrayList<>();
+        tipoUsers.add(tipoUser);
         this.id = id;
         this.username = username;
         this.password = password;
-        this.authorities = tipoUsers.stream().map(x -> new SimpleGrantedAuthority(x.getDescription()))
+        this.authorities = tipoUsers.stream().map(x -> new SimpleGrantedAuthority(x.toString()))
                 .collect(Collectors.toList());
     }
     
@@ -53,7 +56,7 @@ public class UserSpringSecurity implements UserDetails {
     }
 
     public boolean hasRole(TipoUser tipoUser) {
-        return getAuthorities().contains(new SimpleGrantedAuthority(tipoUser.getDescription()));
+        return getAuthorities().contains(new SimpleGrantedAuthority(tipoUser.toString()));
     }
 
 }

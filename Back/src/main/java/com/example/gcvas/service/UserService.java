@@ -36,7 +36,7 @@ public class UserService {
 
     
     public User findById(Long id) {
-        VerificaADM();
+       // VerificaADM();
 
         Optional<User> obj = this.userRepository.findById(id);
         if (obj.isPresent()) {
@@ -55,7 +55,7 @@ public class UserService {
 
     @Transactional
     public User create(User obj){
-        VerificaADM();
+        //VerificaADM();
         obj.setId(null);
         obj.setPassword(this.bCryptPasswordEncoder.encode(obj.getPassword()));
        return  this.userRepository.save(obj);

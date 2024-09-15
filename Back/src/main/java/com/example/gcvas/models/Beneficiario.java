@@ -26,7 +26,7 @@ import lombok.NoArgsConstructor;
 
 public class Beneficiario {
 
-    public static final String TABLE_NAME = "Benficiario";
+    public static final String TABLE_NAME = "Beneficiario";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,7 +40,7 @@ public class Beneficiario {
     @Size(min = 2, max = 50)
     private String username;
 
-    @Column(name = "Endereço", unique = false, nullable = false, insertable = true, updatable =true, length = 50 )
+    @Column(name = "Endereco", unique = false, nullable = false, insertable = true, updatable =true, length = 50 )
     @NotBlank
     @Size(min = 5, max = 50)
     private String endereco;

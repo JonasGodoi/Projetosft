@@ -23,7 +23,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Acao {
     
-    public static final String TABLE_NAME = "Ação";
+    public static final String TABLE_NAME = "Acao";
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

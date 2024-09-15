@@ -2,8 +2,6 @@ package com.example.gcvas.controllers;
 
 import java.net.URI;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -37,9 +35,9 @@ public class UserController {
         return ResponseEntity.ok().body(userService.findAll());
     }
 
- @PostMapping("/secretaria")
+ @PostMapping
     public ResponseEntity<Void> postUserSecretaria(@RequestBody @Valid User obj) {
-        obj.setProfiles(Stream.of(TipoUser.SECRETARIA.getCode()).collect(Collectors.toSet()));
+        obj.setProfile(TipoUser.SECRETARIA);
         this.userService.create(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
 
@@ -53,7 +51,7 @@ public class UserController {
         return ResponseEntity.ok().body(obj);
     }
     
-    @PostMapping("path")
+    @PostMapping("/path")
     public ResponseEntity<Void> postUser(@RequestBody @Valid User obj) {
         this.userService.create(obj);
 

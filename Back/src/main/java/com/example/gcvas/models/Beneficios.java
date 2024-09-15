@@ -37,7 +37,7 @@ public class Beneficios {
     @NotBlank
     private String categoria;
 
-    @Column(name = "Descrição", unique = false, nullable = false, insertable = true, updatable = true, length = 50 )
+    @Column(name = "Descricao", unique = false, nullable = false, insertable = true, updatable = true, length = 50 )
     @Size(min = 4, max = 50)
     @NotBlank
     private String desc_beneficio;

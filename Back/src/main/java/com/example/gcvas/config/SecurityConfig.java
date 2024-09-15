@@ -66,8 +66,8 @@ public class SecurityConfig {
                                 .anyRequest().authenticated().and()
                                 .authenticationManager(authenticationManager));
 
-                http.addFilter(new JWTAuthenticationFilter(this.authenticationManager, this.jwtUtil));
-                http.addFilter(new JWTAuthorizationFilter(this.authenticationManager, this.jwtUtil,
+               http.addFilter(new JWTAuthenticationFilter(this.authenticationManager, this.jwtUtil));
+               http.addFilter(new JWTAuthorizationFilter(this.authenticationManager, this.jwtUtil,
                                 this.userDetailsService));
 
                 http.sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));

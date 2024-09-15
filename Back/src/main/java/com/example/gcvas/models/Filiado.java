@@ -40,7 +40,7 @@ public class Filiado {
     @Size(min = 11, max =11)
     private String cpf;
 
-    @Column(name = "Data Nascimento", unique = false, nullable = false, insertable = true, updatable =false, length = 8 )
+    @Column(name = "Data_Nascimento", unique = false, nullable = false, insertable = true, updatable =false, length = 8 )
     @NotNull
     @Size(min = 8, max = 8)
     private Integer data;

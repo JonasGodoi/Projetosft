@@ -1,18 +1,15 @@
 package com.example.gcvas.models;
 
-import java.util.HashSet;
-import java.util.Set;
-import java.util.stream.Collectors;
 
+
+import com.example.gcvas.models.Enums.Converter;
 import com.example.gcvas.models.Enums.TipoUser;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
-import jakarta.persistence.CollectionTable;
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
+import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -42,29 +39,22 @@ public class User {
     @Size(min = 2, max = 50)
     private String username;
 
-    @Column(name = "password", unique = false, nullable = false, insertable = true, updatable =true, length = 50)
+    @Column(name = "password", unique = false, nullable = false, insertable = true, updatable =true, length= 255)
     @NotBlank
-    @Size(min = 2, max = 50)
+    @Size(min = 2, max = 255)
     @JsonProperty(access = Access.WRITE_ONLY)
     private String password;
 
-    @Column(name = "requisições", unique = false, nullable = false, insertable = true, updatable =true, length = 50)
-    @NotBlank
-    @Size
-    private String requisicoes;
+    //@Column(name = "requisicoes", unique = false, nullable = false, insertable = true, updatable =true, length = 50)
+    //@NotBlank
+    //@Size
+    //private String requisicoes;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
-    @CollectionTable(name = "user_profile")
+
+    @Convert(converter=Converter.class)
     @Column(name = "profile", nullable = false)
-    private Set<Integer> profiles = new HashSet<>();
+    private TipoUser profile ;
 
-     public Set<TipoUser> getProfiles() {
-        return this.profiles.stream().map(x -> TipoUser.toEnum(x)).collect(Collectors.toSet());
-    }
-
-    public void addProfile(TipoUser tipoUser) {
-        this.profiles.add(tipoUser.getCode());
-    }
+    
 
 }
